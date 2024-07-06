@@ -1,9 +1,9 @@
-package com.example.cryptokeeper.presentation.list
+package com.example.cryptokeeper.presentation.screens.list
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cryptokeeper.common.Resource
 import com.example.cryptokeeper.domain.use_cases.GetCoinsUseCase
+import com.example.cryptokeeper.presentation.CryptoKeeperViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,19 +13,24 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
 class CoinListViewModel @Inject constructor(
     private val getCoinsUseCase: GetCoinsUseCase,
-) : ViewModel() {
+) : CryptoKeeperViewModel<CoinListState, CoinListEvent, CoinListAction>() {
 
     private val _state = MutableStateFlow(CoinListState())
-    val state: StateFlow<CoinListState>
+    override val state: StateFlow<CoinListState>
         get() = _state.asStateFlow()
 
     init {
         updateState(ScreenData.Loading)
         getCoins()
+    }
+
+    override fun handleAction(action: CoinListAction) {
+        when (action) {
+            is CoinListAction.OnCoinClicked -> emitUiEvent(CoinListEvent.OnCoinClicked(action.coinId))
+        }
     }
 
     private fun getCoins() {

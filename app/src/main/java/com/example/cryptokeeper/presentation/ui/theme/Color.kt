@@ -1,4 +1,4 @@
-package com.example.cryptokeeper.ui.theme
+package com.example.cryptokeeper.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

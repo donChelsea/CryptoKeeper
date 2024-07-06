@@ -3,6 +3,9 @@
     <string name="active">Active</string>
     <string name="inactive">Inactive</string>
     <string name="coin_list_item_title">%1$s. %2$s %3$s</string>
+    <string name="coin_detail_title">%1$s. %2$s (%3$s)</string>
     <string name="content_description_show_error">Show error</string>
     <string name="show_error_message">An error has occurred.</string>
+    <string name="tags">Tags</string>
+    <string name="team_members">Team Members</string>
 </resources>

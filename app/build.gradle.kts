@@ -66,6 +66,9 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    // Accompanist
+    implementation("com.google.accompanist:accompanist-flowlayout:0.35.1-alpha")
+
     // Dagger/Hilt
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
@@ -73,6 +76,10 @@ dependencies {
 
     // Icons
     implementation("androidx.compose.material:material-icons-extended:1.6.8")
+
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.11.0")

@@ -1,4 +1,4 @@
-package com.example.cryptokeeper.ui.theme
+package com.example.cryptokeeper.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -14,6 +14,10 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import com.example.cryptokeeper.presentation.ui.theme.Purple80
+import com.example.cryptokeeper.presentation.ui.theme.PurpleGrey40
+import com.example.cryptokeeper.presentation.ui.theme.PurpleGrey80
+import com.example.cryptokeeper.ui.theme.Typography
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,

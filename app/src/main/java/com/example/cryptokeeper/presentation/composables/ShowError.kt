@@ -3,7 +3,9 @@ package com.example.cryptokeeper.presentation.composables
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Error
@@ -29,10 +31,10 @@ fun ShowError(
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally,) {
             Icon(imageVector = Icons.Filled.Error, contentDescription = stringResource(id = R.string.content_description_show_error))
-            Text(
-                text = stringResource(id = message),
-                modifier = Modifier.padding(top = 8.dp)
-            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Text(text = stringResource(id = message))
         }
     }
 }

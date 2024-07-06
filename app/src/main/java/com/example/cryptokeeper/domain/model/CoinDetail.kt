@@ -8,7 +8,7 @@ data class CoinDetail(
     val name: String,
     val rank: Int,
     val symbol: String,
-    val tags: List<String>,
+    val tags: List<Tag>,
     val team: List<TeamMember>,
 )
 
@@ -16,4 +16,9 @@ data class TeamMember(
     val id: String,
     val name: String,
     val position: String,
+)
+
+data class Tag(
+    val id: String,
+    val name: String
 )

@@ -1,5 +1,6 @@
 package com.example.cryptokeeper.presentation.composables
 
+import android.content.res.Configuration
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -15,18 +16,20 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.cryptokeeper.R
 import com.example.cryptokeeper.domain.model.Coin
+import com.example.cryptokeeper.domain.model.TeamMember
 
 @Composable
 fun CoinListItem(
     coin: Coin,
-    onItemClick: (Coin) -> Unit,
+    onItemClick: (String) -> Unit,
 ) {
     Row(modifier = Modifier
         .fillMaxWidth()
-        .clickable { }
+        .clickable { onItemClick(coin.id) }
         .padding(20.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -44,4 +47,21 @@ fun CoinListItem(
             modifier = Modifier.align(CenterVertically)
         )
     }
+}
+
+@Preview(showBackground = true)
+@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun PreviewCoinListItem() {
+    CoinListItem(
+        coin = Coin(
+            id = "Id",
+            isActive = false,
+            name = "Name",
+            rank = 1,
+            symbol = "SYM",
+            type = "Type"
+        ),
+        onItemClick = {}
+    )
 }
