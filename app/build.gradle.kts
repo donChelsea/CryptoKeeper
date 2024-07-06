@@ -65,9 +65,14 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
     // Dagger/Hilt
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    // Icons
+    implementation("androidx.compose.material:material-icons-extended:1.6.8")
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
