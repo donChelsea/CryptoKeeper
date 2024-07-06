@@ -9,6 +9,7 @@ data class CoinListState(
 sealed class ScreenData {
     data object Initial: ScreenData()
     data object Loading: ScreenData()
+    data object Offline: ScreenData()
     data class Error(
         val message: String
     ): ScreenData()

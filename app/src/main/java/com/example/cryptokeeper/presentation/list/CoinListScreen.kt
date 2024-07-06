@@ -22,6 +22,7 @@ fun CoinListScreen(
 
     when(state.screenData) {
         is ScreenData.Initial -> {}
+        is ScreenData.Offline -> {}
         is ScreenData.Loading -> ShowLoading()
         is ScreenData.Error -> ShowError()
         is ScreenData.Data -> CoinList(
@@ -29,8 +30,6 @@ fun CoinListScreen(
             onItemClick = {}
         )
     }
-
-
 }
 
 @Composable
