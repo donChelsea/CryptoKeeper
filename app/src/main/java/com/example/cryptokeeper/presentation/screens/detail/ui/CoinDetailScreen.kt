@@ -134,7 +134,7 @@ private fun CoinDetailContent(
                     }
                 }
 
-                Spacer(modifier = Modifier.height(15.dp))
+                Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
                     text = stringResource(id = R.string.team_members),

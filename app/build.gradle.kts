@@ -69,6 +69,7 @@ dependencies {
     // Accompanist
     implementation("com.google.accompanist:accompanist-flowlayout:0.35.1-alpha")
 
+
     // Dagger/Hilt
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
@@ -77,6 +78,9 @@ dependencies {
     // Icons
     implementation("androidx.compose.material:material-icons-extended:1.6.8")
 
+    // Mockk
+    testImplementation("io.mockk:mockk:1.13.11")
+
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
@@ -84,6 +88,12 @@ dependencies {
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // Testing
+    testImplementation("app.cash.turbine:turbine:1.1.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0-RC")
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 }
 
 kapt {
