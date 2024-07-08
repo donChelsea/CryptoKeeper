@@ -25,11 +25,11 @@ import com.example.cryptokeeper.domain.model.TeamMember
 @Composable
 fun CoinListItem(
     coin: Coin,
-    onItemClick: (String) -> Unit,
+    onItemClick: (String, String) -> Unit,
 ) {
     Row(modifier = Modifier
         .fillMaxWidth()
-        .clickable { onItemClick(coin.id) }
+        .clickable { onItemClick(coin.id, coin.name) }
         .padding(20.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -62,6 +62,6 @@ private fun PreviewCoinListItem() {
             symbol = "SYM",
             type = "Type"
         ),
-        onItemClick = {}
+        onItemClick = {id, name ->  }
     )
 }

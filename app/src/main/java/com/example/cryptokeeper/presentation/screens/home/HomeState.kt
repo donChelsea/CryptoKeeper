@@ -1,10 +1,10 @@
-package com.example.cryptokeeper.presentation.screens.list
+package com.example.cryptokeeper.presentation.screens.home
 
 import androidx.compose.runtime.Immutable
 import com.example.cryptokeeper.domain.model.Coin
 
 @Immutable
-data class CoinListState(
+data class HomeState(
     val screenData: ScreenData = ScreenData.Initial
 )
 
@@ -26,13 +26,13 @@ sealed class ScreenData {
 }
 
 @Immutable
-sealed class CoinListEvent {
+sealed class HomeEvent {
     @Immutable
-    data class OnCoinClicked(val coinId: String): CoinListEvent()
+    data class OnCoinClicked(val coinId: String, val coinName: String): HomeEvent()
 }
 
 @Immutable
-sealed class CoinListAction {
+sealed class HomeAction {
     @Immutable
-    data class OnCoinClicked(val coinId: String): CoinListAction()
+    data class OnCoinClicked(val coinId: String, val coinName: String): HomeAction()
 }

@@ -1,4 +1,4 @@
-package com.example.cryptokeeper.presentation.screens.list.ui
+package com.example.cryptokeeper.presentation.screens.home.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,15 +16,15 @@ import com.example.cryptokeeper.presentation.composables.CoinListItem
 import com.example.cryptokeeper.presentation.composables.ShowError
 import com.example.cryptokeeper.presentation.composables.ShowLoading
 import com.example.cryptokeeper.presentation.navigation.NavScreen
-import com.example.cryptokeeper.presentation.screens.list.CoinListAction
-import com.example.cryptokeeper.presentation.screens.list.CoinListEvent
-import com.example.cryptokeeper.presentation.screens.list.CoinListState
-import com.example.cryptokeeper.presentation.screens.list.CoinListViewModel
-import com.example.cryptokeeper.presentation.screens.list.ScreenData
+import com.example.cryptokeeper.presentation.screens.home.HomeAction
+import com.example.cryptokeeper.presentation.screens.home.HomeEvent
+import com.example.cryptokeeper.presentation.screens.home.HomeState
+import com.example.cryptokeeper.presentation.screens.home.HomeViewModel
+import com.example.cryptokeeper.presentation.screens.home.ScreenData
 
 @Composable
-fun CoinListScreen(
-    viewModel: CoinListViewModel = hiltViewModel(),
+fun HomeScreen(
+    viewModel: HomeViewModel = hiltViewModel(),
     navController: NavHostController,
 ) {
     val state by viewModel.state.collectAsState()
@@ -32,45 +32,54 @@ fun CoinListScreen(
     LaunchedEffect(key1 = true) {
         viewModel.events.collect { event ->
             when (event) {
-                is CoinListEvent.OnCoinClicked -> navController.navigate(NavScreen.CoinDetail.withArgs(event.coinId))
+                is HomeEvent.OnCoinClicked -> navController.navigate(
+                    NavScreen.CoinDetail.withArgs(event.coinId, event.coinName)
+                )
             }
         }
     }
 
-    CoinListLayout(
+    HomeLayout(
         state = state,
         onAction = viewModel::handleAction
     )
 }
 
 @Composable
-private fun CoinListLayout(
-    state: CoinListState,
-    onAction: (CoinListAction) -> Unit
+private fun HomeLayout(
+    state: HomeState,
+    onAction: (HomeAction) -> Unit,
 ) {
-    when(state.screenData) {
+    when (state.screenData) {
         is ScreenData.Initial -> {}
         is ScreenData.Offline -> {}
         is ScreenData.Loading -> ShowLoading()
         is ScreenData.Error -> ShowError()
-        is ScreenData.Data -> CoinListContent(
+        is ScreenData.Data -> HomeContent(
             coins = state.screenData.coins,
-            onItemClick = { onAction(CoinListAction.OnCoinClicked(it)) },
+            onItemClick = { id, name ->
+                onAction(
+                    HomeAction.OnCoinClicked(
+                        coinId = id,
+                        coinName = name
+                    )
+                )
+            },
         )
     }
 }
 
 @Composable
-private fun CoinListContent(
+private fun HomeContent(
     coins: List<Coin>,
-    onItemClick: (String) -> Unit,
+    onItemClick: (String, String) -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(coins) { coin ->
                 CoinListItem(
                     coin = coin,
-                    onItemClick = { onItemClick(coin.id) }
+                    onItemClick = { id, name -> onItemClick(id, name) }
                 )
             }
         }

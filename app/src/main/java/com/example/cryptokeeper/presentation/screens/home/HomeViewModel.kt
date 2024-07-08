@@ -1,4 +1,4 @@
-package com.example.cryptokeeper.presentation.screens.list
+package com.example.cryptokeeper.presentation.screens.home
 
 import androidx.lifecycle.viewModelScope
 import com.example.cryptokeeper.common.Resource
@@ -14,12 +14,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CoinListViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val getCoinsUseCase: GetCoinsUseCase,
-) : CryptoKeeperViewModel<CoinListState, CoinListEvent, CoinListAction>() {
+) : CryptoKeeperViewModel<HomeState, HomeEvent, HomeAction>() {
 
-    private val _state = MutableStateFlow(CoinListState())
-    override val state: StateFlow<CoinListState>
+    private val _state = MutableStateFlow(HomeState())
+    override val state: StateFlow<HomeState>
         get() = _state.asStateFlow()
 
     init {
@@ -27,9 +27,14 @@ class CoinListViewModel @Inject constructor(
         getCoins()
     }
 
-    override fun handleAction(action: CoinListAction) {
+    override fun handleAction(action: HomeAction) {
         when (action) {
-            is CoinListAction.OnCoinClicked -> emitUiEvent(CoinListEvent.OnCoinClicked(action.coinId))
+            is HomeAction.OnCoinClicked -> emitUiEvent(
+                HomeEvent.OnCoinClicked(
+                    coinId = action.coinId,
+                    coinName = action.coinName
+                )
+            )
         }
     }
 

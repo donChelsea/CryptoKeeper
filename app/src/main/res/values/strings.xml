@@ -8,4 +8,6 @@
     <string name="show_error_message">An error has occurred.</string>
     <string name="tags">Tags</string>
     <string name="team_members">Team Members</string>
+    <string name="back">Back</string>
+    <string name="search">Search</string>
 </resources>

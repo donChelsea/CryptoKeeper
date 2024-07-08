@@ -1,12 +1,16 @@
 package com.example.cryptokeeper.presentation.navigation
 
-sealed class NavScreen(val route: String) {
-    data object CoinList: NavScreen("coinList")
-    data object CoinDetail: NavScreen("coinDetail")
-    data object Search: NavScreen("Search")
+sealed class NavScreen(
+    val route: String,
+    val name: String,
+) {
+    data object Home : NavScreen("home", "Home")
+    data object CoinDetail : NavScreen("coinDetail", "Coin Detail")
+    data object Search : NavScreen("search", "Search")
 
     object MovieDetailArgs {
         const val COIN_ID = "coinId"
+        const val COIN_NAME = "coinName"
     }
 
     fun withArgs(vararg args: String): String {
