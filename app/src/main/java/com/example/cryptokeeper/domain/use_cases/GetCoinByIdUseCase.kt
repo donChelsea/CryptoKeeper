@@ -1,9 +1,7 @@
 package com.example.cryptokeeper.domain.use_cases
 
 import com.example.cryptokeeper.common.Resource
-import com.example.cryptokeeper.data.remote.dtos.toCoin
 import com.example.cryptokeeper.data.remote.dtos.toCoinDetail
-import com.example.cryptokeeper.domain.model.Coin
 import com.example.cryptokeeper.domain.model.CoinDetail
 import com.example.cryptokeeper.domain.repository.CoinRepository
 import kotlinx.coroutines.flow.Flow

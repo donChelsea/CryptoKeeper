@@ -21,6 +21,7 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(
     @ApplicationContext val context: Context,
     private val getCoinsUseCase: GetCoinsUseCase,
+    private val sharedPref: SharedPreferencesModel
 ) : CryptoKeeperViewModel<SearchState, SearchEvent, SearchAction>() {
 
     private val _state = MutableStateFlow(SearchState())
@@ -28,8 +29,7 @@ class SearchViewModel @Inject constructor(
         get() = _state.asStateFlow()
 
     private val allCoins = mutableListOf<Coin>()
-    private val prefModel = SharedPreferencesModel(context)
-    val searchHistory = prefModel.searchHistory
+    val searchHistory = sharedPref.searchHistory
 
     init {
         updateState(ScreenData.Loading)
@@ -40,11 +40,11 @@ class SearchViewModel @Inject constructor(
         when (action) {
             is SearchAction.OnSearchClicked -> {
                 searchCoins(action.query)
-                prefModel.put(action.query)
+                sharedPref.put(action.query)
             }
             is SearchAction.OnSearchHistoryItemClicked -> {
                 searchCoins(action.query)
-                prefModel.put(action.query)
+                sharedPref.put(action.query)
             }
             is SearchAction.OnCoinClicked -> emitUiEvent(SearchEvent.OnCoinClicked(action.coinId, action.coinName))
         }

@@ -20,7 +20,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.cryptokeeper.R
 import com.example.cryptokeeper.domain.model.Coin
-import com.example.cryptokeeper.domain.model.TeamMember
 
 @Composable
 fun CoinListItem(

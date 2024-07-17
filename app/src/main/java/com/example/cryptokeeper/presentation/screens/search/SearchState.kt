@@ -2,7 +2,6 @@ package com.example.cryptokeeper.presentation.screens.search
 
 import androidx.compose.runtime.Immutable
 import com.example.cryptokeeper.domain.model.Coin
-import com.example.cryptokeeper.presentation.screens.home.HomeAction
 
 @Immutable
 data class SearchState(

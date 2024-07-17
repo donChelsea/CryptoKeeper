@@ -3,7 +3,6 @@
 package com.example.cryptokeeper.presentation.screens.search.ui
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,7 +14,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.SearchBar
@@ -24,11 +22,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -39,13 +35,11 @@ import com.example.cryptokeeper.R
 import com.example.cryptokeeper.presentation.composables.CoinListItem
 import com.example.cryptokeeper.presentation.composables.ShowError
 import com.example.cryptokeeper.presentation.navigation.NavScreen
-import com.example.cryptokeeper.presentation.screens.home.HomeEvent
 import com.example.cryptokeeper.presentation.screens.search.ScreenData
 import com.example.cryptokeeper.presentation.screens.search.SearchAction
 import com.example.cryptokeeper.presentation.screens.search.SearchEvent
 import com.example.cryptokeeper.presentation.screens.search.SearchState
 import com.example.cryptokeeper.presentation.screens.search.SearchViewModel
-import kotlinx.coroutines.flow.collect
 
 @Composable
 fun SearchScreen(
