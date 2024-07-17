@@ -27,15 +27,13 @@ class HomeViewModel @Inject constructor(
         getCoins()
     }
 
-    override fun handleAction(action: HomeAction) {
-        when (action) {
-            is HomeAction.OnCoinClicked -> emitUiEvent(
-                HomeEvent.OnCoinClicked(
-                    coinId = action.coinId,
-                    coinName = action.coinName
-                )
+    override fun handleAction(action: HomeAction) = when (action) {
+        is HomeAction.OnCoinClicked -> emitUiEvent(
+            HomeEvent.OnCoinClicked(
+                coinId = action.coinId,
+                coinName = action.coinName
             )
-        }
+        )
     }
 
     private fun getCoins() {

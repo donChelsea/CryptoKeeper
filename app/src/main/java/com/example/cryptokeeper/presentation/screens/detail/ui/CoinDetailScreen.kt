@@ -33,6 +33,7 @@ import com.example.cryptokeeper.presentation.composables.CoinTag
 import com.example.cryptokeeper.presentation.composables.ShowError
 import com.example.cryptokeeper.presentation.composables.ShowLoading
 import com.example.cryptokeeper.presentation.composables.TeamMemberListItem
+import com.example.cryptokeeper.presentation.navigation.NavScreen
 import com.example.cryptokeeper.presentation.screens.detail.CoinDetailAction
 import com.example.cryptokeeper.presentation.screens.detail.CoinDetailEvent
 import com.example.cryptokeeper.presentation.screens.detail.CoinDetailState
@@ -50,7 +51,7 @@ fun CoinDetailScreen(
     LaunchedEffect(key1 = true) {
         viewModel.events.collect { event ->
             when (event) {
-                is CoinDetailEvent.OnBackClicked -> navController.popBackStack()
+                is CoinDetailEvent.OnBackClicked -> navController.navigateUp()
             }
         }
     }

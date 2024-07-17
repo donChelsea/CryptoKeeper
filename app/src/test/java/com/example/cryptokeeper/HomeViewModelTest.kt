@@ -24,7 +24,7 @@ class HomeViewModelTest {
 
     @Before
     fun setUp() {
-        MockKAnnotations.init(relaxed = true)
+        MockKAnnotations.init(this, relaxed = true)
         testSubject = HomeViewModel(mockk())
     }
 

@@ -2,7 +2,7 @@ package com.example.cryptokeeper.presentation.navigation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -39,8 +39,8 @@ fun NavigationHost() {
                 canNavigateBack = canNavigateBack,
                 navigateUp = { navController.popBackStack() },
                 actions = {
-                    IconButton(onClick = { /* Do something */ }) {
-                        Icon(Icons.Outlined.Search, contentDescription = stringResource(id = R.string.search))
+                    IconButton(onClick = { navController.navigate(NavScreen.Search.route) }) {
+                        Icon(Icons.Default.Search, contentDescription = stringResource(id = R.string.search))
                     }
                 }
             )

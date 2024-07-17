@@ -2,6 +2,7 @@ package com.example.cryptokeeper.presentation.screens.detail
 
 import androidx.compose.runtime.Immutable
 import com.example.cryptokeeper.domain.model.CoinDetail
+import com.example.cryptokeeper.presentation.screens.home.HomeEvent
 
 @Immutable
 data class CoinDetailState(

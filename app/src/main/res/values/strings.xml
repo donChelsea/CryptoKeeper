@@ -10,4 +10,8 @@
     <string name="team_members">Team Members</string>
     <string name="back">Back</string>
     <string name="search">Search</string>
+    <string name="close">Close</string>
+    <string name="search_placeholder">Search for names or symbols</string>
+    <string name="history_icon">History icon</string>
+    <string name="clear_searches">Clear searches</string>
 </resources>

@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.example.cryptokeeper.presentation.composables
 
 import androidx.compose.material.icons.Icons
@@ -12,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.example.cryptokeeper.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NavTopBar(
     modifier: Modifier = Modifier,

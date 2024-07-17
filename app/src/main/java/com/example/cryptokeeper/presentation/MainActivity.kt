@@ -3,7 +3,6 @@ package com.example.cryptokeeper.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -12,6 +11,7 @@ import androidx.compose.ui.graphics.toArgb
 import com.example.cryptokeeper.presentation.navigation.NavigationHost
 import com.example.cryptokeeper.presentation.ui.theme.CryptoKeeperTheme
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
