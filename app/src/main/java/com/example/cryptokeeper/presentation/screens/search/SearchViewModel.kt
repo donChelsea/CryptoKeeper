@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.viewModelScope
 import com.example.cryptokeeper.common.Resource
 import com.example.cryptokeeper.common.SharedPreferencesModel
+import com.example.cryptokeeper.data.repository.ConnectivityRepository
 import com.example.cryptokeeper.domain.model.Coin
 import com.example.cryptokeeper.domain.use_cases.GetCoinsUseCase
 import com.example.cryptokeeper.presentation.CryptoKeeperViewModel
@@ -21,7 +22,8 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(
     @ApplicationContext val context: Context,
     private val getCoinsUseCase: GetCoinsUseCase,
-    private val sharedPref: SharedPreferencesModel
+    private val sharedPref: SharedPreferencesModel,
+    private val connectivityRepository: ConnectivityRepository,
 ) : CryptoKeeperViewModel<SearchState, SearchEvent, SearchAction>() {
 
     private val _state = MutableStateFlow(SearchState())
@@ -32,8 +34,16 @@ class SearchViewModel @Inject constructor(
     val searchHistory = sharedPref.searchHistory
 
     init {
-        updateState(ScreenData.Loading)
-        getCoins()
+        viewModelScope.launch {
+            connectivityRepository.isConnected.collectLatest { isConnected ->
+                if (isConnected) {
+                    updateState(ScreenData.Loading)
+                    getCoins()
+                } else {
+                    updateState(ScreenData.Offline)
+                }
+            }
+        }
     }
 
     override fun handleAction(action: SearchAction) {

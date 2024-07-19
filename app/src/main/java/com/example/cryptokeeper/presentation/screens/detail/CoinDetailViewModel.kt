@@ -3,6 +3,7 @@ package com.example.cryptokeeper.presentation.screens.detail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.cryptokeeper.common.Resource
+import com.example.cryptokeeper.data.repository.ConnectivityRepository
 import com.example.cryptokeeper.domain.use_cases.GetCoinByIdUseCase
 import com.example.cryptokeeper.presentation.CryptoKeeperViewModel
 import com.example.cryptokeeper.presentation.navigation.NavScreen.MovieDetailArgs.COIN_ID
@@ -17,8 +18,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CoinDetailViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
+    savedStateHandle: SavedStateHandle,
     private val getCoinByIdUseCase: GetCoinByIdUseCase,
+    private val connectivityRepository: ConnectivityRepository,
 ) : CryptoKeeperViewModel<CoinDetailState, CoinDetailEvent, CoinDetailAction>() {
 
     private val _state = MutableStateFlow(CoinDetailState())
@@ -28,15 +30,24 @@ class CoinDetailViewModel @Inject constructor(
     private val coinId = savedStateHandle[COIN_ID] ?: ""
 
     init {
-        if (coinId.isNotEmpty()) {
-            updateState(coinId = coinId, screenData = ScreenData.Loading)
-            getCoinById(coinId)
-        } else {
-            throw IllegalArgumentException("CoinId cannot be empty.")
+        viewModelScope.launch {
+            connectivityRepository.isConnected.collectLatest { isConnected ->
+                if (isConnected) {
+                    if (coinId.isNotEmpty()) {
+                        updateState(coinId = coinId, screenData = ScreenData.Loading)
+                        getCoinById(coinId)
+                    } else {
+                        updateState(screenData = ScreenData.Error(COIN_ERROR))
+                        throw IllegalArgumentException(COIN_ERROR)
+                    }
+                } else {
+                    updateState(ScreenData.Offline)
+                }
+            }
         }
     }
 
-    override fun handleAction(action: CoinDetailAction) = when(action) {
+    override fun handleAction(action: CoinDetailAction) = when (action) {
         CoinDetailAction.OnBackClicked -> emitUiEvent(CoinDetailEvent.OnBackClicked)
     }
 
@@ -62,4 +73,8 @@ class CoinDetailViewModel @Inject constructor(
                 coinId = coinId
             )
         }
+
+    companion object {
+        private const val COIN_ERROR = "CoinId cannot be empty."
+    }
 }

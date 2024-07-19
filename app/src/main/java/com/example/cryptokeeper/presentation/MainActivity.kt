@@ -12,11 +12,12 @@ import com.example.cryptokeeper.presentation.navigation.NavigationHost
 import com.example.cryptokeeper.presentation.ui.theme.CryptoKeeperTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             window.statusBarColor = MaterialTheme.colorScheme.background.toArgb()
             CryptoKeeperTheme {

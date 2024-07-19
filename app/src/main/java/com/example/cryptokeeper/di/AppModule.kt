@@ -5,6 +5,7 @@ import com.example.cryptokeeper.common.Constants.BASE_URL
 import com.example.cryptokeeper.common.SharedPreferencesModel
 import com.example.cryptokeeper.data.remote.CoinPaprikaApi
 import com.example.cryptokeeper.data.repository.CoinRepositoryImpl
+import com.example.cryptokeeper.data.repository.ConnectivityRepository
 import com.example.cryptokeeper.domain.repository.CoinRepository
 import dagger.Module
 import dagger.Provides
@@ -36,4 +37,9 @@ class AppModule {
     @Singleton
     fun provideSharedPreferencesModel(@ApplicationContext context: Context): SharedPreferencesModel =
         SharedPreferencesModel(context)
+
+    @Provides
+    @Singleton
+    fun provideConnectivityRespository(@ApplicationContext context: Context): ConnectivityRepository =
+        ConnectivityRepository(context)
 }

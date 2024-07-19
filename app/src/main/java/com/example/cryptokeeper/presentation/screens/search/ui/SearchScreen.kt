@@ -34,6 +34,7 @@ import androidx.navigation.NavHostController
 import com.example.cryptokeeper.R
 import com.example.cryptokeeper.presentation.composables.CoinListItem
 import com.example.cryptokeeper.presentation.composables.ShowError
+import com.example.cryptokeeper.presentation.composables.ShowOffline
 import com.example.cryptokeeper.presentation.navigation.NavScreen
 import com.example.cryptokeeper.presentation.screens.search.ScreenData
 import com.example.cryptokeeper.presentation.screens.search.SearchAction
@@ -74,7 +75,7 @@ private fun SearchLayout(
 ) {
     when (state.screenData) {
         is ScreenData.Initial -> {}
-        is ScreenData.Offline -> {}
+        is ScreenData.Offline -> ShowOffline()
         is ScreenData.Loading -> LoadingSearchContent(
             searchHistory = searchHistory,
             onAction = onAction,
