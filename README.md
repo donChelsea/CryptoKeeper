@@ -1,6 +1,6 @@
 <h1>CryptoKeeper</h1>
 
-<img src="![Screenshot_20240719_184839](https://github.com/user-attachments/assets/3b3bb221-040f-4d03-bcaa-6fae984bdbe5)" width="200" height="300"> <img src="![Screenshot_20240719_184839](https://github.com/user-attachments/assets/3b3bb221-040f-4d03-bcaa-6fae984bdbe5)" width="200" height="300"> <img src="![Screenshot_20240719_184839](https://github.com/user-attachments/assets/3b3bb221-040f-4d03-bcaa-6fae984bdbe5)" width="200" height="300">
+<img src="https://github.com/user-attachments/assets/3fbe0da5-fee7-4729-b677-150b6c79ca4b" width="200dp" height="450dp"> <img src="https://github.com/user-attachments/assets/2c955f71-65af-4073-b651-c95edd44a404" width="200dp" height="450dp"> <img src="https://github.com/user-attachments/assets/4086313a-6c1e-46b7-a34d-cb2f63782449" width="200dp" height="450dp">
 
 <p>An easy way to learn about and keep track of the best and newest cryptocurrency coins that are available on the crypto market. </p>
 
