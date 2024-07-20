@@ -52,11 +52,9 @@ class SearchViewModel @Inject constructor(
                 searchCoins(action.query)
                 sharedPref.put(action.query)
             }
-            is SearchAction.OnSearchHistoryItemClicked -> {
-                searchCoins(action.query)
-                sharedPref.put(action.query)
-            }
+            is SearchAction.OnSearchHistoryItemClicked -> searchCoins(action.query)
             is SearchAction.OnCoinClicked -> emitUiEvent(SearchEvent.OnCoinClicked(action.coinId, action.coinName))
+            is SearchAction.OnClearSearchHistoryItem -> sharedPref.clear(action.query)
         }
     }
 
@@ -64,7 +62,10 @@ class SearchViewModel @Inject constructor(
         viewModelScope.launch {
             getCoinsUseCase().collectLatest { result ->
                 when (result) {
-                    is Resource.Success -> allCoins.addAll(result.data.orEmpty())
+                    is Resource.Success -> {
+                        allCoins.addAll(result.data.orEmpty())
+                        updateState(ScreenData.Data(data = allCoins))
+                    }
                     is Resource.Error -> updateState(ScreenData.Error(message = result.message ?: "An unexpected error occurred."))
                     is Resource.Loading -> updateState(ScreenData.Loading)
                 }
@@ -73,6 +74,8 @@ class SearchViewModel @Inject constructor(
     }
 
     private fun searchCoins(query: String) {
+        updateState(ScreenData.Loading)
+
         val results = mutableListOf<Coin>()
         allCoins.forEach { coin ->
             val lowercaseQuery = query.lowercase()
@@ -83,6 +86,7 @@ class SearchViewModel @Inject constructor(
                 results.add(coin)
             }
         }
+
         updateState(ScreenData.Data(results = results))
     }
 

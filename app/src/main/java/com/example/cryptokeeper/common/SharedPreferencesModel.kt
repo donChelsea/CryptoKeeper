@@ -17,8 +17,8 @@ class SharedPreferencesModel(context: Context) {
         editor.commit()
     }
 
-    fun clear() {
-        editor.clear()
+    fun clear(item: String) {
+        editor.remove(item)
         editor.commit()
     }
 

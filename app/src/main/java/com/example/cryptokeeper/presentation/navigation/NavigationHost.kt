@@ -3,9 +3,12 @@ package com.example.cryptokeeper.presentation.navigation
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -30,6 +33,7 @@ import com.example.cryptokeeper.presentation.screens.search.ui.SearchScreen
 fun NavigationHost() {
     var title by remember { mutableStateOf("") }
     val canNavigateBack = (title != NavScreen.Home.name) && title.isNotEmpty()
+    val isSearchScreen = title == NavScreen.Search.name
     val navController = rememberNavController()
 
     Scaffold(
@@ -39,8 +43,10 @@ fun NavigationHost() {
                 canNavigateBack = canNavigateBack,
                 navigateUp = { navController.popBackStack() },
                 actions = {
-                    IconButton(onClick = { navController.navigate(NavScreen.Search.route) }) {
-                        Icon(Icons.Default.Search, contentDescription = stringResource(id = R.string.search))
+                    if (!isSearchScreen) {
+                        IconButton(onClick = { navController.navigate(NavScreen.Search.route) }) {
+                            Icon(Icons.Default.Search, contentDescription = stringResource(id = R.string.search))
+                        }
                     }
                 }
             )

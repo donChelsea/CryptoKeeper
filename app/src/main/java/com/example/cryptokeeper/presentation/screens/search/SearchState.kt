@@ -38,4 +38,5 @@ sealed class SearchAction {
     data class OnSearchClicked(val query: String) : SearchAction()
     data class OnSearchHistoryItemClicked(val query: String) : SearchAction()
     data class OnCoinClicked(val coinId: String, val coinName: String): SearchAction()
+    data class OnClearSearchHistoryItem(val query: String): SearchAction()
 }

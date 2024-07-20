@@ -3,11 +3,15 @@
 package com.example.cryptokeeper.presentation.screens.search.ui
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredWidth
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -34,6 +38,7 @@ import androidx.navigation.NavHostController
 import com.example.cryptokeeper.R
 import com.example.cryptokeeper.presentation.composables.CoinListItem
 import com.example.cryptokeeper.presentation.composables.ShowError
+import com.example.cryptokeeper.presentation.composables.ShowLoading
 import com.example.cryptokeeper.presentation.composables.ShowOffline
 import com.example.cryptokeeper.presentation.navigation.NavScreen
 import com.example.cryptokeeper.presentation.screens.search.ScreenData
@@ -55,6 +60,7 @@ fun SearchScreen(
                 is SearchEvent.OnCoinClicked -> navController.navigate(
                     NavScreen.CoinDetail.withArgs(event.coinId, event.coinName)
                 )
+
                 SearchEvent.OnSearchClicked -> TODO()
             }
         }
@@ -76,21 +82,12 @@ private fun SearchLayout(
     when (state.screenData) {
         is ScreenData.Initial -> {}
         is ScreenData.Offline -> ShowOffline()
-        is ScreenData.Loading -> LoadingSearchContent(
-            searchHistory = searchHistory,
-            onAction = onAction,
-        )
+        is ScreenData.Loading -> ShowLoading()
         is ScreenData.Error -> ShowError()
         is ScreenData.Data -> SearchContent(
             state = state,
-            onItemClick = { id, name ->
-                onAction(
-                    SearchAction.OnCoinClicked(
-                        coinId = id,
-                        coinName = name
-                    )
-                )
-            },
+            searchHistory = searchHistory,
+            onAction = onAction,
         )
     }
 }
@@ -98,78 +95,118 @@ private fun SearchLayout(
 @Composable
 private fun SearchContent(
     state: SearchState,
-    onItemClick: (String, String) -> Unit,
+    searchHistory: Set<String>,
+    onAction: (SearchAction) -> Unit,
 ) {
-    LazyColumn(modifier = Modifier.fillMaxWidth()) {
-        items((state.screenData as ScreenData.Data).results) { coin ->
-            CoinListItem(
-                coin = coin,
-                onItemClick = { id, name -> onItemClick(id, name) }
-            )
+    Column(modifier = Modifier.fillMaxWidth()) {
+        CustomSearchBar(
+            onAction = onAction,
+            searchHistory = searchHistory
+        )
+
+        LazyColumn(modifier = Modifier.fillMaxWidth()) {
+            items((state.screenData as ScreenData.Data).results) { coin ->
+                CoinListItem(
+                    coin = coin,
+                    onItemClick = { id, name ->
+                        onAction(
+                            SearchAction.OnCoinClicked(
+                                coinId = id,
+                                coinName = name
+                            )
+                        )
+                    }
+                )
+            }
         }
     }
 }
 
 @Composable
-private fun LoadingSearchContent(
+private fun CustomSearchBar(
     onAction: (SearchAction) -> Unit,
     searchHistory: Set<String>,
 ) {
-    Column(modifier = Modifier.fillMaxSize()) {
-        var query by remember { mutableStateOf("") }
-        var active by remember { mutableStateOf(false) }
+    var query by remember { mutableStateOf("") }
+    var active by remember { mutableStateOf(false) }
 
-        SearchBar(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(12.dp),
-            query = query,
-            onQueryChange = { query = it },
-            onSearch = {
-                if (!searchHistory.contains(it.trim())) {
-                    onAction(SearchAction.OnSearchClicked(it.trim()))
-                }
-                active = false
-                query = ""
-            },
-            active = active,
-            onActiveChange = { active = it },
-            placeholder = { Text(text = stringResource(id = R.string.search_placeholder)) },
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Default.Search,
-                    contentDescription = stringResource(id = R.string.search)
-                )
-            },
-            trailingIcon = {
-                if (active) {
-                    Icon(
-                        imageVector = Icons.Default.Close,
-                        contentDescription = stringResource(id = R.string.close),
-                        modifier = Modifier.clickable {
-                            if (query.isNotEmpty()) {
-                                query = ""
-                            } else {
-                                active = false
-                            }
-                        }
-                    )
-                }
+    SearchBar(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(12.dp),
+        query = query,
+        onQueryChange = { query = it },
+        onSearch = {
+            if (!searchHistory.contains(it.trim())) {
+                onAction(SearchAction.OnSearchClicked(it.trim()))
             }
-        ) {
-            searchHistory.forEach { item ->
-                Row(
+            active = false
+            query = ""
+        },
+        active = active,
+        onActiveChange = { active = it },
+        placeholder = { Text(text = stringResource(id = R.string.search_placeholder)) },
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Default.Search,
+                contentDescription = stringResource(id = R.string.search)
+            )
+        },
+        trailingIcon = {
+            if (active) {
+                Icon(
+                    imageVector = Icons.Default.Close,
+                    contentDescription = stringResource(id = R.string.close),
+                    modifier = Modifier.clickable {
+                        if (query.isNotEmpty()) {
+                            query = ""
+                        } else {
+                            active = false
+                        }
+                    }
+                )
+            }
+        }
+    ) {
+        searchHistory.forEach { item ->
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(14.dp),
+                verticalAlignment = CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Box(
                     modifier = Modifier
-                        .padding(14.dp)
-                        .clickable { onAction(SearchAction.OnSearchHistoryItemClicked(item)) },
-                    verticalAlignment = CenterVertically
+                        .wrapContentWidth()
+                        .clickable {
+                            onAction(SearchAction.OnSearchHistoryItemClicked(item))
+                            active = false
+                        },
+                ) {
+                    Row {
+                        Icon(
+                            modifier = Modifier.padding(end = 10.dp),
+                            imageVector = Icons.Default.History,
+                            contentDescription = stringResource(id = R.string.history_icon),
+                        )
+                        Text(text = item)
+                    }
+                }
+                Box(
+                    modifier = Modifier
+                        .wrapContentWidth()
+                        .clickable {
+                            onAction(SearchAction.OnClearSearchHistoryItem(item))
+                        }
                 ) {
                     Icon(
-                        modifier = Modifier.padding(end = 10.dp),
-                        imageVector = Icons.Default.History,
-                        contentDescription = stringResource(id = R.string.history_icon),
+                        modifier = Modifier
+                            .wrapContentWidth()
+                            .padding(start = 10.dp),
+                        imageVector = Icons.Default.Close,
+                        contentDescription = stringResource(id = R.string.close),
                     )
-                    Text(text = item)
                 }
             }
         }
