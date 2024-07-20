@@ -9,14 +9,14 @@
 </h3>
     <ul>
       <p>
-        <li>Jetpack Compose</li>
-        <li>Accompanist</li>
-        <li>Dagger/Hilt</li>
-        <li>Mockk</li>
-        <li>Compose Navigation</li>
-        <li>Retrofit/Gson</li>
-        <li>Turbine</li>
-        <li>JUnit</li>
+        <li><a href="https://developer.android.com/develop/ui/compose">Jetpack Compose</a></li>
+        <li><a href="https://github.com/google/accompanist">Accompanist</a></li>
+        <li><a href="https://github.com/google/dagger">Dagger/Hilt</a></li>
+        <li><a href="https://github.com/mockk/mockk">Mockk</a></li>
+        <li><a href="https://developer.android.com/develop/ui/compose/navigation">Compose Navigation</a></li>
+        <li><a href="https://github.com/square/retrofit">Retrofit/Gson</a></li>
+        <li><a href="https://github.com/cashapp/turbine">Turbine</a></li>
+        <li><a href="https://junit.org/junit5/">JUnit</a></li>
       </p>
     </ul>
 
