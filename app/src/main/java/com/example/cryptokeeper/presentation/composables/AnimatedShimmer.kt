@@ -1,6 +1,5 @@
 package com.example.cryptokeeper.presentation.composables
 
-import android.content.res.Configuration
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
@@ -8,6 +7,7 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,7 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun AnimatedShimmer() {
+fun AnimatedShimmer(isList: Boolean) {
     val shimmerColors = listOf(
         Color.LightGray.copy(alpha = 0.6f),
         Color.LightGray.copy(alpha = 0.2f),
@@ -57,7 +57,11 @@ fun AnimatedShimmer() {
         )
     )
 
-    ShimmerGridItem(brush = brush)
+    if (isList) {
+        ShimmerGridItem(brush = brush)
+    } else {
+        ShimmerCoinDetail(brush = brush)
+    }
 }
 
 @Composable
@@ -88,6 +92,76 @@ private fun ShimmerGridItem(brush: Brush) {
     }
 }
 
+@Composable
+private fun ShimmerCoinDetail(brush: Brush) {
+    Column(Modifier.fillMaxWidth()) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
+            verticalAlignment = CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(end = 40.dp)
+                    .requiredHeight(60.dp)
+                    .background(brush)
+                    .clip(RoundedCornerShape(CornerSize(20.dp)))
+            )
+            Spacer(modifier = Modifier.width(12.dp))
+            Spacer(
+                modifier = Modifier
+                    .requiredWidth(40.dp)
+                    .requiredHeight(40.dp)
+                    .background(brush)
+                    .clip(RoundedCornerShape(CornerSize(20.dp)))
+            )
+        }
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .requiredHeight(80.dp)
+                .padding(horizontal = 20.dp)
+                .background(brush)
+                .clip(RoundedCornerShape(CornerSize(20.dp)))
+        )
+        Spacer(
+            modifier = Modifier
+                .requiredWidth(100.dp)
+                .padding(start = 20.dp, top = 12.dp)
+                .requiredHeight(40.dp)
+                .background(brush)
+                .clip(RoundedCornerShape(CornerSize(20.dp)))
+        )
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .requiredHeight(80.dp)
+                .padding(horizontal = 20.dp, vertical = 8.dp)
+                .background(brush)
+                .clip(RoundedCornerShape(CornerSize(20.dp)))
+        )
+        Spacer(
+            modifier = Modifier
+                .requiredWidth(140.dp)
+                .padding(start = 20.dp, top = 12.dp)
+                .requiredHeight(40.dp)
+                .background(brush)
+                .clip(RoundedCornerShape(CornerSize(20.dp)))
+        )
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .requiredHeight(300.dp)
+                .padding(horizontal = 20.dp, vertical = 8.dp)
+                .background(brush)
+                .clip(RoundedCornerShape(CornerSize(20.dp)))
+        )
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 private fun ShimmerGridItemPreview() {
@@ -102,10 +176,10 @@ private fun ShimmerGridItemPreview() {
     )
 }
 
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(showBackground = true)
 @Composable
-private fun ShimmerGridItemDarkPreview() {
-    ShimmerGridItem(
+private fun ShimmerCoinDetailPreview() {
+    ShimmerCoinDetail(
         brush = Brush.linearGradient(
             colors = listOf(
                 Color.LightGray.copy(alpha = 0.6f),

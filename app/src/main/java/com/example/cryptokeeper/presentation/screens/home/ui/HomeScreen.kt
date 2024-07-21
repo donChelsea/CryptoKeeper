@@ -14,7 +14,7 @@ import androidx.navigation.NavHostController
 import com.example.cryptokeeper.domain.model.Coin
 import com.example.cryptokeeper.presentation.composables.CoinListItem
 import com.example.cryptokeeper.presentation.composables.ShowError
-import com.example.cryptokeeper.presentation.composables.ShowLoadingWithShimmer
+import com.example.cryptokeeper.presentation.composables.ShowLoadingListWithShimmer
 import com.example.cryptokeeper.presentation.composables.ShowOffline
 import com.example.cryptokeeper.presentation.navigation.NavScreen
 import com.example.cryptokeeper.presentation.screens.home.HomeAction
@@ -54,7 +54,7 @@ private fun HomeLayout(
     when (state.screenData) {
         is ScreenData.Initial -> {}
         is ScreenData.Offline -> ShowOffline()
-        is ScreenData.Loading -> ShowLoadingWithShimmer()
+        is ScreenData.Loading -> ShowLoadingListWithShimmer()
         is ScreenData.Error -> ShowError()
         is ScreenData.Data -> HomeContent(
             coins = state.screenData.coins,

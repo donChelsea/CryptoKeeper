@@ -31,7 +31,7 @@ import com.example.cryptokeeper.R
 import com.example.cryptokeeper.domain.model.CoinDetail
 import com.example.cryptokeeper.presentation.composables.CoinTag
 import com.example.cryptokeeper.presentation.composables.ShowError
-import com.example.cryptokeeper.presentation.composables.ShowLoading
+import com.example.cryptokeeper.presentation.composables.ShowLoadingCoinDetailWithShimmer
 import com.example.cryptokeeper.presentation.composables.ShowOffline
 import com.example.cryptokeeper.presentation.composables.TeamMemberListItem
 import com.example.cryptokeeper.presentation.screens.detail.CoinDetailAction
@@ -71,7 +71,7 @@ private fun CoinDetailLayout(
     when(state.screenData) {
         is ScreenData.Initial -> {}
         is ScreenData.Offline -> ShowOffline()
-        is ScreenData.Loading -> ShowLoading()
+        is ScreenData.Loading -> ShowLoadingCoinDetailWithShimmer()
         is ScreenData.Error -> ShowError()
         is ScreenData.Data -> state.screenData.coin?.let {
             CoinDetailContent(coin = it)

@@ -26,16 +26,21 @@ fun ShowLoading() {
 }
 
 @Composable
-fun ShowLoadingWithShimmer() {
+fun ShowLoadingListWithShimmer() {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceEvenly,
         contentPadding = PaddingValues(20.dp)
     ) {
         items(count = 8) {
-            AnimatedShimmer()
+            AnimatedShimmer(isList = true)
         }
     }
+}
+
+@Composable
+fun ShowLoadingCoinDetailWithShimmer() {
+    AnimatedShimmer(isList = false)
 }
 
 @Preview(showBackground = true, showSystemUi = true)
@@ -46,6 +51,12 @@ private fun PreviewShowLoading() {
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-private fun PreviewShowLoadingWithShimmer() {
-    ShowLoadingWithShimmer()
+private fun PreviewShowLoadingListWithShimmer() {
+    AnimatedShimmer(isList = true)
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun PreviewShowLoadingCoinDetailWithShimmer() {
+    AnimatedShimmer(isList = false)
 }
