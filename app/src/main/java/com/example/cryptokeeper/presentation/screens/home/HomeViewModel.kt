@@ -2,7 +2,7 @@ package com.example.cryptokeeper.presentation.screens.home
 
 import androidx.lifecycle.viewModelScope
 import com.example.cryptokeeper.common.Resource
-import com.example.cryptokeeper.data.repository.ConnectivityRepository
+import com.example.cryptokeeper.data.repository.ConnectivityModel
 import com.example.cryptokeeper.domain.use_cases.GetCoinsUseCase
 import com.example.cryptokeeper.presentation.CryptoKeeperViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getCoinsUseCase: GetCoinsUseCase,
-    private val connectivityRepository: ConnectivityRepository
+    private val connectivityModel: ConnectivityModel
 ) : CryptoKeeperViewModel<HomeState, HomeEvent, HomeAction>() {
 
     private val _state = MutableStateFlow(HomeState())
@@ -26,7 +26,7 @@ class HomeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            connectivityRepository.isConnected.collectLatest { isConnected ->
+            connectivityModel.isConnected.collectLatest { isConnected ->
                 if (isConnected) {
                     updateState(ScreenData.Loading)
                     getCoins()

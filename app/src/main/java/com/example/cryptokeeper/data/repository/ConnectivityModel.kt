@@ -2,11 +2,14 @@ package com.example.cryptokeeper.data.repository
 
 import android.content.Context
 import android.net.ConnectivityManager
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import javax.inject.Inject
 
-class ConnectivityRepository(context: Context) {
-
+class ConnectivityModel @Inject constructor(
+    @ApplicationContext context: Context
+) {
     private val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 

@@ -3,7 +3,7 @@ package com.example.cryptokeeper.presentation.screens.detail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.cryptokeeper.common.Resource
-import com.example.cryptokeeper.data.repository.ConnectivityRepository
+import com.example.cryptokeeper.data.repository.ConnectivityModel
 import com.example.cryptokeeper.domain.use_cases.GetCoinByIdUseCase
 import com.example.cryptokeeper.presentation.CryptoKeeperViewModel
 import com.example.cryptokeeper.presentation.navigation.NavScreen.MovieDetailArgs.COIN_ID
@@ -20,7 +20,7 @@ import javax.inject.Inject
 class CoinDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val getCoinByIdUseCase: GetCoinByIdUseCase,
-    private val connectivityRepository: ConnectivityRepository,
+    private val connectivityModel: ConnectivityModel,
 ) : CryptoKeeperViewModel<CoinDetailState, CoinDetailEvent, CoinDetailAction>() {
 
     private val _state = MutableStateFlow(CoinDetailState())
@@ -31,7 +31,7 @@ class CoinDetailViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            connectivityRepository.isConnected.collectLatest { isConnected ->
+            connectivityModel.isConnected.collectLatest { isConnected ->
                 if (isConnected) {
                     if (coinId.isNotEmpty()) {
                         updateState(coinId = coinId, screenData = ScreenData.Loading)

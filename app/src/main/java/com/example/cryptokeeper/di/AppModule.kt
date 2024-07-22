@@ -4,9 +4,7 @@ import android.content.Context
 import com.example.cryptokeeper.common.Constants.BASE_URL
 import com.example.cryptokeeper.common.SharedPreferencesModel
 import com.example.cryptokeeper.data.remote.CoinPaprikaApi
-import com.example.cryptokeeper.data.repository.CoinRepositoryImpl
-import com.example.cryptokeeper.data.repository.ConnectivityRepository
-import com.example.cryptokeeper.domain.repository.CoinRepository
+import com.example.cryptokeeper.data.repository.ConnectivityModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,15 +29,11 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideCoinRepository(api: CoinPaprikaApi): CoinRepository = CoinRepositoryImpl(api)
-
-    @Provides
-    @Singleton
     fun provideSharedPreferencesModel(@ApplicationContext context: Context): SharedPreferencesModel =
         SharedPreferencesModel(context)
 
     @Provides
     @Singleton
-    fun provideConnectivityRespository(@ApplicationContext context: Context): ConnectivityRepository =
-        ConnectivityRepository(context)
+    fun provideConnectivityModel(@ApplicationContext context: Context): ConnectivityModel =
+        ConnectivityModel(context)
 }
