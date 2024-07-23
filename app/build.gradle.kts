@@ -78,9 +78,6 @@ dependencies {
     // Icons
     implementation("androidx.compose.material:material-icons-extended:1.6.8")
 
-    // Mockk
-    testImplementation("io.mockk:mockk:1.13.11")
-
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
@@ -95,6 +92,7 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0-RC")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    testImplementation("io.mockk:mockk:1.13.11")
 }
 
 kapt {
