@@ -1,4 +1,4 @@
-package com.example.cryptokeeper.presentation.composables
+package com.example.cryptokeeper.presentation.composables.animations
 
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateFloat

@@ -12,6 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.cryptokeeper.presentation.composables.animations.AnimatedShimmer
+import com.example.cryptokeeper.presentation.composables.animations.ProgressAnimation
 
 @Composable
 fun ShowLoading() {
@@ -21,7 +23,7 @@ fun ShowLoading() {
             .fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
-        CircularProgressIndicator()
+        ProgressAnimation()
     }
 }
 
