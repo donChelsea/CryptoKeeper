@@ -3,7 +3,7 @@ package com.example.cryptokeeper.presentation.screens.detail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.cryptokeeper.common.Resource
-import com.example.cryptokeeper.data.repository.ConnectivityModule
+import com.example.cryptokeeper.modules.ConnectivityModule
 import com.example.cryptokeeper.domain.use_cases.GetCoinByIdUseCase
 import com.example.cryptokeeper.presentation.CryptoKeeperViewModel
 import com.example.cryptokeeper.presentation.navigation.NavScreen.MovieDetailArgs.COIN_ID

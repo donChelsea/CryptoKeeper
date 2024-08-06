@@ -2,7 +2,7 @@ package com.example.cryptokeeper.presentation.screens.home
 
 import androidx.lifecycle.viewModelScope
 import com.example.cryptokeeper.common.Resource
-import com.example.cryptokeeper.data.repository.ConnectivityModule
+import com.example.cryptokeeper.modules.ConnectivityModule
 import com.example.cryptokeeper.domain.use_cases.GetCoinsUseCase
 import com.example.cryptokeeper.presentation.CryptoKeeperViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

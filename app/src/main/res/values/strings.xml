@@ -17,4 +17,5 @@
     <string name="clear_searches">Clear searches</string>
     <string name="get_live_updates_title">Get live updates!</string>
     <string name="get_live_updates_description">Create an account to get updates about your favorite coins!</string>
+    <string name="show">Show</string>
 </resources>

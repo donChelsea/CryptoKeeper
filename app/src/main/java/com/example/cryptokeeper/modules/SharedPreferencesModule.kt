@@ -1,4 +1,4 @@
-package com.example.cryptokeeper.common
+package com.example.cryptokeeper.modules
 
 import android.content.Context
 import android.content.SharedPreferences

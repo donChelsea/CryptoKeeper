@@ -1,4 +1,4 @@
-package com.example.cryptokeeper.data.repository
+package com.example.cryptokeeper.modules
 
 import android.content.Context
 import android.net.ConnectivityManager
