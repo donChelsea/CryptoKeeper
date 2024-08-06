@@ -29,6 +29,8 @@
       <p>
         <li>Shimmer effect on home screen while list of coins are loading</li>
         <li>Internet connection monitoring</li>
+        <li>Notifications and permissions handling</li>
+        <li>Broadcast receiver for notification actions</li>
         <li>Simple searching that can query names or symbols</li>
         <li>Shared preferences to keep track of search history</li>
         <li>Dagger/Hilt for easy dependency injection</li>
