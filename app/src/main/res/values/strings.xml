@@ -15,4 +15,6 @@
     <string name="search_placeholder">Search for names or symbols</string>
     <string name="history_icon">History icon</string>
     <string name="clear_searches">Clear searches</string>
+    <string name="get_live_updates_title">Get live updates!</string>
+    <string name="get_live_updates_description">Create an account to get updates about your favorite coins!</string>
 </resources>

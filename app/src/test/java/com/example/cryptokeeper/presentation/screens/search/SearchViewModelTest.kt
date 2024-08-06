@@ -1,17 +1,12 @@
 package com.example.cryptokeeper.presentation.screens.search
 
 import android.content.Context
-import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.test
-import com.example.cryptokeeper.common.SharedPreferencesModel
+import com.example.cryptokeeper.common.SharedPreferencesModule
 import com.example.cryptokeeper.domain.use_cases.GetCoinsUseCase
-import com.example.cryptokeeper.presentation.navigation.NavScreen.MovieDetailArgs.COIN_ID
 import com.example.cryptokeeper.utils.MainCoroutineRule
-import dagger.hilt.android.qualifiers.ApplicationContext
 import io.mockk.MockKAnnotations
-import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK
-import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -33,7 +28,7 @@ class SearchViewModelTest {
     lateinit var context: Context
 
     @RelaxedMockK
-    lateinit var sharedPref: SharedPreferencesModel
+    lateinit var sharedPref: SharedPreferencesModule
 
     private lateinit var testSubject: SearchViewModel
 

@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
-class ConnectivityModel @Inject constructor(
+class ConnectivityModule @Inject constructor(
     @ApplicationContext context: Context
 ) {
     private val connectivityManager =
