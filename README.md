@@ -19,6 +19,7 @@
         <li><a href="https://github.com/square/retrofit">Retrofit/Gson</a></li>
         <li><a href="https://github.com/cashapp/turbine">Turbine</a></li>
         <li><a href="https://junit.org/junit5/">JUnit</a></li>
+        <li><a href="https://developer.android.com/develop/ui/views/notifications?authuser=1">Notifications</li>
       </p>
     </ul>
 
