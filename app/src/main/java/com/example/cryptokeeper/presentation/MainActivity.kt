@@ -28,8 +28,8 @@ import androidx.core.content.ContextCompat
 import com.example.cryptokeeper.R
 import com.example.cryptokeeper.presentation.navigation.NavigationHost
 import com.example.cryptokeeper.presentation.ui.theme.CryptoKeeperTheme
-import com.example.cryptokeeper.receivers.ToastReceiver
-import com.example.cryptokeeper.receivers.ToastReceiver.Companion.MESSAGE_ARG
+import com.example.cryptokeeper.presentation.receivers.ToastReceiver
+import com.example.cryptokeeper.presentation.receivers.ToastReceiver.Companion.MESSAGE_ARG
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

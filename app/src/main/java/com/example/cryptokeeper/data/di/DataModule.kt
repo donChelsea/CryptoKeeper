@@ -1,14 +1,12 @@
-package com.example.cryptokeeper.di
+package com.example.cryptokeeper.data.di
 
-import android.content.Context
 import com.example.cryptokeeper.common.Constants.BASE_URL
 import com.example.cryptokeeper.data.remote.CoinPaprikaApi
-import com.example.cryptokeeper.modules.ConnectivityModule
-import com.example.cryptokeeper.modules.SharedPreferencesModule
+import com.example.cryptokeeper.data.repository.CoinRepositoryImpl
+import com.example.cryptokeeper.domain.repository.CoinRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,7 +14,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppModule {
+class DataModule {
 
     @Provides
     @Singleton
@@ -29,11 +27,6 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideSharedPreferencesModule(@ApplicationContext context: Context): SharedPreferencesModule =
-        SharedPreferencesModule(context)
-
-    @Provides
-    @Singleton
-    fun provideConnectivityModule(@ApplicationContext context: Context): ConnectivityModule =
-        ConnectivityModule(context)
+    fun provideCoinRepository(api: CoinPaprikaApi): CoinRepository =
+        CoinRepositoryImpl(api)
 }

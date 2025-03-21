@@ -1,4 +1,4 @@
-package com.example.cryptokeeper.receivers
+package com.example.cryptokeeper.presentation.receivers
 
 import android.content.BroadcastReceiver
 import android.content.Context
