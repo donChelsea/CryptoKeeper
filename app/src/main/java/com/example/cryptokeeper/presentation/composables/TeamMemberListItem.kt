@@ -13,10 +13,11 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.cryptokeeper.domain.model.TeamMember
+import com.example.cryptokeeper.presentation.models.TeamMemberUiModel
 
 @Composable
 fun TeamMemberListItem(
-    teamMember: TeamMember,
+    teamMember: TeamMemberUiModel,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -40,5 +41,5 @@ fun TeamMemberListItem(
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun PreviewTeamMemberListItem() {
-    TeamMemberListItem(teamMember = TeamMember("1", "Team Member", "Position"))
+    TeamMemberListItem(teamMember = TeamMemberUiModel("1", "Team Member", "Position"))
 }

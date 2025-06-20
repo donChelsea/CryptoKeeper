@@ -1,8 +1,8 @@
 package com.example.cryptokeeper.domain.di
 
 import android.content.Context
-import com.example.cryptokeeper.modules.ConnectivityModule
-import com.example.cryptokeeper.modules.SharedPreferencesModule
+import com.example.cryptokeeper.domain.modules.ConnectivityModule
+import com.example.cryptokeeper.domain.modules.SharedPreferencesModule
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

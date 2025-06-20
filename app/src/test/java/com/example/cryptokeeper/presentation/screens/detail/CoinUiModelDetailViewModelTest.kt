@@ -15,7 +15,7 @@ import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertTrue
 
-class CoinDetailViewModelTest {
+class CoinUiModelDetailViewModelTest {
     private val testDispatcher = StandardTestDispatcher()
 
     @get:Rule

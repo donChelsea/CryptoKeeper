@@ -1,7 +1,7 @@
 package com.example.cryptokeeper.data.di
 
-import com.example.cryptokeeper.common.Constants.BASE_URL
-import com.example.cryptokeeper.data.remote.CoinPaprikaApi
+import com.example.cryptokeeper.BuildConfig
+import com.example.cryptokeeper.data.remote.CoinApi
 import com.example.cryptokeeper.data.repository.CoinRepositoryImpl
 import com.example.cryptokeeper.domain.repository.CoinRepository
 import dagger.Module
@@ -18,15 +18,15 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideCoinPaprikaApi(): CoinPaprikaApi =
+    fun provideCoinApi(): CoinApi =
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(CoinPaprikaApi::class.java)
+            .create(CoinApi::class.java)
 
     @Provides
     @Singleton
-    fun provideCoinRepository(api: CoinPaprikaApi): CoinRepository =
+    fun provideCoinRepository(api: CoinApi): CoinRepository =
         CoinRepositoryImpl(api)
 }

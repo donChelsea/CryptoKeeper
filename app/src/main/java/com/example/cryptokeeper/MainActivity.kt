@@ -1,4 +1,4 @@
-package com.example.cryptokeeper.presentation
+package com.example.cryptokeeper
 
 import android.Manifest
 import android.app.NotificationChannel
@@ -25,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import com.example.cryptokeeper.R
 import com.example.cryptokeeper.presentation.navigation.NavigationHost
 import com.example.cryptokeeper.presentation.ui.theme.CryptoKeeperTheme
 import com.example.cryptokeeper.presentation.receivers.ToastReceiver

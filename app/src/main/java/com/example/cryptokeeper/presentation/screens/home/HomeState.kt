@@ -2,6 +2,7 @@ package com.example.cryptokeeper.presentation.screens.home
 
 import androidx.compose.runtime.Immutable
 import com.example.cryptokeeper.domain.model.Coin
+import com.example.cryptokeeper.presentation.models.CoinUiModel
 
 @Immutable
 data class HomeState(
@@ -21,7 +22,7 @@ sealed class ScreenData {
 
     @Immutable
     data class Data(
-        val coins: List<Coin> = emptyList()
+        val coins: List<CoinUiModel> = emptyList()
     ) : ScreenData()
 }
 

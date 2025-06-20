@@ -2,7 +2,7 @@ package com.example.cryptokeeper.presentation.screens.search
 
 import android.content.Context
 import app.cash.turbine.test
-import com.example.cryptokeeper.modules.SharedPreferencesModule
+import com.example.cryptokeeper.domain.modules.SharedPreferencesModule
 import com.example.cryptokeeper.domain.use_cases.GetCoinsUseCase
 import com.example.cryptokeeper.utils.MainCoroutineRule
 import io.mockk.MockKAnnotations

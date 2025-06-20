@@ -5,9 +5,7 @@ import com.example.cryptokeeper.utils.MainCoroutineRule
 import io.mockk.MockKAnnotations
 import io.mockk.coVerify
 import io.mockk.impl.annotations.RelaxedMockK
-import io.mockk.verify
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
@@ -36,7 +34,7 @@ class GetCoinsUseCaseTest {
         mainCoroutineRule.launch {
             testSubject.invoke()
 
-            coVerify { repository.getCoins() }
+            coVerify { repository.getCoinsFlow() }
         }
     }
 }

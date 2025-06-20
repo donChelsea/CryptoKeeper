@@ -2,6 +2,7 @@ package com.example.cryptokeeper.presentation.screens.search
 
 import androidx.compose.runtime.Immutable
 import com.example.cryptokeeper.domain.model.Coin
+import com.example.cryptokeeper.presentation.models.CoinUiModel
 
 @Immutable
 data class SearchState(
@@ -21,8 +22,8 @@ sealed class ScreenData {
 
     @Immutable
     data class Data(
-        val data: List<Coin> = emptyList(),
-        val results: List<Coin> = emptyList(),
+        val data: List<CoinUiModel> = emptyList(),
+        val results: List<CoinUiModel> = emptyList(),
     ) : ScreenData()
 }
 

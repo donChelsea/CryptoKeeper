@@ -16,38 +16,16 @@ data class CoinDetailDto(
     val symbol: String,
     val tags: List<TagDto>,
     val team: List<TeamMemberDto>,
-)
-
-data class TeamMemberDto(
-    val id: String,
-    val name: String,
-    val position: String
-)
-
-data class TagDto(
-    val id: String,
-    val name: String
-)
-
-fun CoinDetailDto.toCoinDetail() = CoinDetail(
-    description = description,
-    id = id,
-    isActive = isActive,
-    logo = logo,
-    name = name,
-    rank = rank,
-    symbol = symbol,
-    tags = tags.map { it.toTag() },
-    team = team.map { it.toTeamMember() }
-)
-
-fun TeamMemberDto.toTeamMember() = TeamMember(
-    id = id,
-    name = name,
-    position = position
-)
-
-fun TagDto.toTag() = Tag(
-    id = id,
-    name = name
-)
+) {
+    fun toDomain() = CoinDetail(
+        description = description,
+        id = id,
+        isActive = isActive,
+        logo = logo,
+        name = name,
+        rank = rank,
+        symbol = symbol,
+        tags = tags.map { it.toDomain() },
+        team = team.map { it.toDomain() }
+    )
+}

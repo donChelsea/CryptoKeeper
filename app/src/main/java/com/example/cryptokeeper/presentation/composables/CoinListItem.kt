@@ -19,11 +19,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.cryptokeeper.R
-import com.example.cryptokeeper.domain.model.Coin
+import com.example.cryptokeeper.presentation.models.CoinUiModel
 
 @Composable
 fun CoinListItem(
-    coin: Coin,
+    coin: CoinUiModel,
     onItemClick: (String, String) -> Unit,
 ) {
     Row(modifier = Modifier
@@ -53,7 +53,7 @@ fun CoinListItem(
 @Composable
 private fun PreviewCoinListItem() {
     CoinListItem(
-        coin = Coin(
+        coin = CoinUiModel(
             id = "Id",
             isActive = false,
             name = "Name",
@@ -61,6 +61,6 @@ private fun PreviewCoinListItem() {
             symbol = "SYM",
             type = "Type"
         ),
-        onItemClick = {id, name ->  }
+        onItemClick = { id, name ->  }
     )
 }

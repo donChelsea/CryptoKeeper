@@ -2,11 +2,11 @@ package com.example.cryptokeeper.presentation.screens.detail
 
 import androidx.compose.runtime.Immutable
 import com.example.cryptokeeper.domain.model.CoinDetail
+import com.example.cryptokeeper.presentation.models.CoinDetailUiModel
 
 @Immutable
 data class CoinDetailState(
     val screenData: ScreenData = ScreenData.Initial,
-    val coinId: String = "",
 )
 
 @Immutable
@@ -22,7 +22,7 @@ sealed class ScreenData {
 
     @Immutable
     data class Data(
-        val coin: CoinDetail? = null,
+        val coin: CoinDetailUiModel = CoinDetailUiModel(),
     ) : ScreenData()
 }
 

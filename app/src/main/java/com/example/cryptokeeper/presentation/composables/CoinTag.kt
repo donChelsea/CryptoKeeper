@@ -13,9 +13,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.cryptokeeper.domain.model.Tag
+import com.example.cryptokeeper.presentation.models.TagUiModel
 
 @Composable
-fun CoinTag(tag: Tag) {
+fun CoinTag(tag: TagUiModel) {
     Box(
         modifier = Modifier
             .border(
@@ -38,5 +39,5 @@ fun CoinTag(tag: Tag) {
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun PreviewCoinTag() {
-    CoinTag(tag = Tag("1", "Tag Name"))
+    CoinTag(tag = TagUiModel("1", "Tag Name"))
 }

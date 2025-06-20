@@ -11,13 +11,14 @@ data class CoinDto(
     val rank: Int,
     val symbol: String,
     val type: String
-)
+) {
+    fun toDomain() = Coin(
+        id = id,
+        isActive = isActive,
+        name = name,
+        rank = rank,
+        symbol = symbol,
+        type = type
+    )
+}
 
-fun CoinDto.toCoin() = Coin(
-    id = id,
-    isActive = isActive,
-    name = name,
-    rank = rank,
-    symbol = symbol,
-    type = type
-)

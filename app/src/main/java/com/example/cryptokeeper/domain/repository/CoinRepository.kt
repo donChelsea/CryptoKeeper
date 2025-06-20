@@ -1,9 +1,11 @@
 package com.example.cryptokeeper.domain.repository
 
-import com.example.cryptokeeper.data.remote.dtos.CoinDetailDto
-import com.example.cryptokeeper.data.remote.dtos.CoinDto
+import com.example.cryptokeeper.domain.util.Resource
+import com.example.cryptokeeper.domain.model.Coin
+import com.example.cryptokeeper.domain.model.CoinDetail
+import kotlinx.coroutines.flow.Flow
 
 interface CoinRepository {
-    suspend fun getCoins(): List<CoinDto>
-    suspend fun getCoinById(coinId: String): CoinDetailDto
+    fun getCoinsFlow(): Flow<Resource<List<Coin>>>
+    suspend fun getCoinById(coinId: String): Resource<CoinDetail>
 }

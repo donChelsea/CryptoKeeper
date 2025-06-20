@@ -13,7 +13,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class GetCoinByIdUseCaseTest {
+class GetCoinUiModelByIdUseCaseTest {
     private val testDispatcher = StandardTestDispatcher()
 
     @get:Rule

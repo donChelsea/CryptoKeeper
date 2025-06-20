@@ -2,26 +2,28 @@ package com.example.cryptokeeper.presentation.screens.search
 
 import android.content.Context
 import androidx.lifecycle.viewModelScope
-import com.example.cryptokeeper.common.Resource
-import com.example.cryptokeeper.modules.SharedPreferencesModule
-import com.example.cryptokeeper.modules.ConnectivityModule
 import com.example.cryptokeeper.domain.model.Coin
-import com.example.cryptokeeper.domain.use_cases.GetCoinsUseCase
+import com.example.cryptokeeper.domain.modules.ConnectivityModule
+import com.example.cryptokeeper.domain.modules.SharedPreferencesModule
+import com.example.cryptokeeper.domain.repository.CoinRepository
+import com.example.cryptokeeper.domain.util.Resource
 import com.example.cryptokeeper.presentation.CryptoKeeperViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     @ApplicationContext val context: Context,
-    private val getCoinsUseCase: GetCoinsUseCase,
+    private val repository: CoinRepository,
     private val sharedPref: SharedPreferencesModule,
     private val connectivityModule: ConnectivityModule,
 ) : CryptoKeeperViewModel<SearchState, SearchEvent, SearchAction>() {
@@ -38,7 +40,7 @@ class SearchViewModel @Inject constructor(
             connectivityModule.isConnected.collectLatest { isConnected ->
                 if (isConnected) {
                     updateState(ScreenData.Loading)
-                    getCoins()
+                    withContext(Dispatchers.IO) { getCoins() }
                 } else {
                     updateState(ScreenData.Offline)
                 }
@@ -52,21 +54,33 @@ class SearchViewModel @Inject constructor(
                 searchCoins(action.query)
                 sharedPref.put(action.query)
             }
+
             is SearchAction.OnSearchHistoryItemClicked -> searchCoins(action.query)
-            is SearchAction.OnCoinClicked -> emitUiEvent(SearchEvent.OnCoinClicked(action.coinId, action.coinName))
+            is SearchAction.OnCoinClicked -> emitUiEvent(
+                SearchEvent.OnCoinClicked(
+                    action.coinId,
+                    action.coinName
+                )
+            )
+
             is SearchAction.OnClearSearchHistoryItem -> sharedPref.clear(action.query)
         }
     }
 
     private fun getCoins() {
         viewModelScope.launch {
-            getCoinsUseCase().collectLatest { result ->
+            repository.getCoinsFlow().collectLatest { result ->
                 when (result) {
                     is Resource.Success -> {
-                        allCoins.addAll(result.data.orEmpty())
-                        updateState(ScreenData.Data(data = allCoins))
+                        result.data?.let { coins ->
+                            allCoins.addAll(coins)
+                            updateState(ScreenData.Data(data = coins.map { it.toUiModel() }))
+                        }
                     }
-                    is Resource.Error -> updateState(ScreenData.Error(message = result.message ?: "An unexpected error occurred."))
+
+                    is Resource.Error -> updateState(
+                        ScreenData.Error(message = result.message ?: "An unexpected error occurred.")
+                    )
                     is Resource.Loading -> updateState(ScreenData.Loading)
                 }
             }
@@ -87,7 +101,7 @@ class SearchViewModel @Inject constructor(
             }
         }
 
-        updateState(ScreenData.Data(results = results))
+        updateState(ScreenData.Data(results = results.map { it.toUiModel() }))
     }
 
     private fun updateState(screenData: ScreenData) =

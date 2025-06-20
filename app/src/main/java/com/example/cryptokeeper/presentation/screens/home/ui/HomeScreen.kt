@@ -11,11 +11,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.example.cryptokeeper.domain.model.Coin
 import com.example.cryptokeeper.presentation.composables.CoinListItem
 import com.example.cryptokeeper.presentation.composables.ShowError
 import com.example.cryptokeeper.presentation.composables.ShowLoadingListWithShimmer
 import com.example.cryptokeeper.presentation.composables.ShowOffline
+import com.example.cryptokeeper.presentation.models.CoinUiModel
 import com.example.cryptokeeper.presentation.navigation.NavScreen
 import com.example.cryptokeeper.presentation.screens.home.HomeAction
 import com.example.cryptokeeper.presentation.screens.home.HomeEvent
@@ -72,7 +72,7 @@ private fun HomeLayout(
 
 @Composable
 private fun HomeContent(
-    coins: List<Coin>,
+    coins: List<CoinUiModel>,
     onItemClick: (String, String) -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
