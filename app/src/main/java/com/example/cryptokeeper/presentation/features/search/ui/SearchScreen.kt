@@ -38,12 +38,13 @@ import com.example.cryptokeeper.presentation.composables.CoinListItem
 import com.example.cryptokeeper.presentation.composables.ShowError
 import com.example.cryptokeeper.presentation.composables.ShowLoading
 import com.example.cryptokeeper.presentation.composables.ShowOffline
-import com.example.cryptokeeper.presentation.navigation.NavScreen
 import com.example.cryptokeeper.presentation.features.search.ScreenData
 import com.example.cryptokeeper.presentation.features.search.SearchAction
 import com.example.cryptokeeper.presentation.features.search.SearchEvent
 import com.example.cryptokeeper.presentation.features.search.SearchState
 import com.example.cryptokeeper.presentation.features.search.SearchViewModel
+import com.example.cryptokeeper.presentation.models.CoinUiModel
+import com.example.cryptokeeper.presentation.navigation.NavScreen
 
 @Composable
 fun SearchScreen(
@@ -52,7 +53,7 @@ fun SearchScreen(
 ) {
     val state by viewModel.state.collectAsState()
 
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(true) {
         viewModel.events.collect { event ->
             when (event) {
                 is SearchEvent.OnCoinClicked -> navController.navigate(
@@ -83,7 +84,7 @@ private fun SearchLayout(
         is ScreenData.Loading -> ShowLoading()
         is ScreenData.Error -> ShowError()
         is ScreenData.Data -> SearchContent(
-            state = state,
+            searchResults = state.screenData.results,
             searchHistory = searchHistory,
             onAction = onAction,
         )
@@ -92,7 +93,7 @@ private fun SearchLayout(
 
 @Composable
 private fun SearchContent(
-    state: SearchState,
+    searchResults: List<CoinUiModel>,
     searchHistory: Set<String>,
     onAction: (SearchAction) -> Unit,
 ) {
@@ -103,7 +104,7 @@ private fun SearchContent(
         )
 
         LazyColumn(modifier = Modifier.fillMaxWidth()) {
-            items((state.screenData as ScreenData.Data).results) { coin ->
+            items(searchResults) { coin ->
                 CoinListItem(
                     coin = coin,
                     onItemClick = { id, name ->

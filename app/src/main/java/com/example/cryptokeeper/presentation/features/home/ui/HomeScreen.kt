@@ -6,31 +6,31 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.example.cryptokeeper.presentation.composables.CoinListItem
 import com.example.cryptokeeper.presentation.composables.ShowError
 import com.example.cryptokeeper.presentation.composables.ShowLoadingListWithShimmer
 import com.example.cryptokeeper.presentation.composables.ShowOffline
-import com.example.cryptokeeper.presentation.models.CoinUiModel
-import com.example.cryptokeeper.presentation.navigation.NavScreen
 import com.example.cryptokeeper.presentation.features.home.HomeAction
 import com.example.cryptokeeper.presentation.features.home.HomeEvent
 import com.example.cryptokeeper.presentation.features.home.HomeState
 import com.example.cryptokeeper.presentation.features.home.HomeViewModel
 import com.example.cryptokeeper.presentation.features.home.ScreenData
+import com.example.cryptokeeper.presentation.models.CoinUiModel
+import com.example.cryptokeeper.presentation.navigation.NavScreen
 
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
     navController: NavHostController,
 ) {
-    val state by viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(true) {
         viewModel.events.collect { event ->
             when (event) {
                 is HomeEvent.OnCoinClicked -> navController.navigate(
@@ -58,14 +58,7 @@ private fun HomeLayout(
         is ScreenData.Error -> ShowError()
         is ScreenData.Data -> HomeContent(
             coins = state.screenData.coins,
-            onItemClick = { id, name ->
-                onAction(
-                    HomeAction.OnCoinClicked(
-                        coinId = id,
-                        coinName = name
-                    )
-                )
-            },
+            onItemClick = { id, name -> onAction(HomeAction.OnCoinClicked(id, name)) }
         )
     }
 }

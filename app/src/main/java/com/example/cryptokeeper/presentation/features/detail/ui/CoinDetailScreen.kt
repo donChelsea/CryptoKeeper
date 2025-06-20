@@ -16,7 +16,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
@@ -26,6 +25,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.example.cryptokeeper.R
 import com.example.cryptokeeper.presentation.composables.CoinTag
@@ -33,12 +33,12 @@ import com.example.cryptokeeper.presentation.composables.ShowError
 import com.example.cryptokeeper.presentation.composables.ShowLoadingCoinDetailWithShimmer
 import com.example.cryptokeeper.presentation.composables.ShowOffline
 import com.example.cryptokeeper.presentation.composables.TeamMemberListItem
-import com.example.cryptokeeper.presentation.models.CoinDetailUiModel
 import com.example.cryptokeeper.presentation.features.detail.CoinDetailAction
 import com.example.cryptokeeper.presentation.features.detail.CoinDetailEvent
 import com.example.cryptokeeper.presentation.features.detail.CoinDetailState
 import com.example.cryptokeeper.presentation.features.detail.CoinDetailViewModel
 import com.example.cryptokeeper.presentation.features.detail.ScreenData
+import com.example.cryptokeeper.presentation.models.CoinDetailUiModel
 import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
@@ -46,9 +46,9 @@ fun CoinDetailScreen(
     viewModel: CoinDetailViewModel = hiltViewModel(),
     navController: NavHostController,
 ) {
-    val state by viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(true) {
         viewModel.events.collect { event ->
             when (event) {
                 is CoinDetailEvent.OnBackClicked -> navController.navigateUp()
@@ -73,9 +73,7 @@ private fun CoinDetailLayout(
         is ScreenData.Offline -> ShowOffline()
         is ScreenData.Loading -> ShowLoadingCoinDetailWithShimmer()
         is ScreenData.Error -> ShowError()
-        is ScreenData.Data -> state.screenData.coin?.let {
-            CoinDetailContent(coin = it)
-        }
+        is ScreenData.Data -> CoinDetailContent(state.screenData.coin)
     }
 }
 

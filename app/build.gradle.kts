@@ -72,6 +72,9 @@ dependencies {
     // Accompanist
     implementation("com.google.accompanist:accompanist-flowlayout:0.35.1-alpha")
 
+    // Compose
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
     // Dagger/Hilt
     implementation("com.google.dagger:hilt-android:2.48")
