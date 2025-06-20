@@ -1,4 +1,4 @@
-package com.example.cryptokeeper.presentation.screens.search
+package com.example.cryptokeeper.presentation.features.search
 
 import android.content.Context
 import androidx.lifecycle.viewModelScope

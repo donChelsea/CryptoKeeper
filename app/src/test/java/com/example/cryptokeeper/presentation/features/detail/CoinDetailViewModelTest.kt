@@ -1,8 +1,9 @@
-package com.example.cryptokeeper.presentation.screens.detail
+package com.example.cryptokeeper.presentation.features.detail
 
 import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.test
-import com.example.cryptokeeper.domain.use_cases.GetCoinByIdUseCase
+import com.example.cryptokeeper.domain.modules.ConnectivityModule
+import com.example.cryptokeeper.domain.repository.CoinRepository
 import com.example.cryptokeeper.presentation.navigation.NavScreen.MovieDetailArgs.COIN_ID
 import com.example.cryptokeeper.utils.MainCoroutineRule
 import io.mockk.MockKAnnotations
@@ -15,7 +16,7 @@ import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertTrue
 
-class CoinUiModelDetailViewModelTest {
+class CoinDetailViewModelTest {
     private val testDispatcher = StandardTestDispatcher()
 
     @get:Rule
@@ -25,7 +26,10 @@ class CoinUiModelDetailViewModelTest {
     lateinit var savedStateHandle: SavedStateHandle
 
     @RelaxedMockK
-    lateinit var getCoinByIdUseCase: GetCoinByIdUseCase
+    lateinit var repository: CoinRepository
+
+    @RelaxedMockK
+    lateinit var connectivityModule: ConnectivityModule
 
     private lateinit var testSubject: CoinDetailViewModel
 
@@ -35,7 +39,8 @@ class CoinUiModelDetailViewModelTest {
         every { savedStateHandle.get<String>(COIN_ID) } returns "coinId"
         testSubject = CoinDetailViewModel(
             savedStateHandle,
-            getCoinByIdUseCase
+            repository,
+            connectivityModule
         )
     }
 

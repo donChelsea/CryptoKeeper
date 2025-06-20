@@ -1,4 +1,4 @@
-package com.example.cryptokeeper.presentation.screens.home
+package com.example.cryptokeeper.presentation.features.home
 
 import androidx.lifecycle.viewModelScope
 import com.example.cryptokeeper.domain.modules.ConnectivityModule

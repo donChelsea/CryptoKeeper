@@ -1,4 +1,4 @@
-package com.example.cryptokeeper.presentation.screens.detail.ui
+package com.example.cryptokeeper.presentation.features.detail.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -34,11 +34,11 @@ import com.example.cryptokeeper.presentation.composables.ShowLoadingCoinDetailWi
 import com.example.cryptokeeper.presentation.composables.ShowOffline
 import com.example.cryptokeeper.presentation.composables.TeamMemberListItem
 import com.example.cryptokeeper.presentation.models.CoinDetailUiModel
-import com.example.cryptokeeper.presentation.screens.detail.CoinDetailAction
-import com.example.cryptokeeper.presentation.screens.detail.CoinDetailEvent
-import com.example.cryptokeeper.presentation.screens.detail.CoinDetailState
-import com.example.cryptokeeper.presentation.screens.detail.CoinDetailViewModel
-import com.example.cryptokeeper.presentation.screens.detail.ScreenData
+import com.example.cryptokeeper.presentation.features.detail.CoinDetailAction
+import com.example.cryptokeeper.presentation.features.detail.CoinDetailEvent
+import com.example.cryptokeeper.presentation.features.detail.CoinDetailState
+import com.example.cryptokeeper.presentation.features.detail.CoinDetailViewModel
+import com.example.cryptokeeper.presentation.features.detail.ScreenData
 import com.google.accompanist.flowlayout.FlowRow
 
 @Composable

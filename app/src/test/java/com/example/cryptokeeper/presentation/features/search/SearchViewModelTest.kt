@@ -1,9 +1,10 @@
-package com.example.cryptokeeper.presentation.screens.search
+package com.example.cryptokeeper.presentation.features.search
 
 import android.content.Context
 import app.cash.turbine.test
+import com.example.cryptokeeper.domain.modules.ConnectivityModule
 import com.example.cryptokeeper.domain.modules.SharedPreferencesModule
-import com.example.cryptokeeper.domain.use_cases.GetCoinsUseCase
+import com.example.cryptokeeper.domain.repository.CoinRepository
 import com.example.cryptokeeper.utils.MainCoroutineRule
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.RelaxedMockK
@@ -22,13 +23,16 @@ class SearchViewModelTest {
     val mainCoroutineRule = MainCoroutineRule(testDispatcher)
 
     @RelaxedMockK
-    lateinit var getCoinsUseCase: GetCoinsUseCase
+    lateinit var repository: CoinRepository
 
     @RelaxedMockK
     lateinit var context: Context
 
     @RelaxedMockK
     lateinit var sharedPref: SharedPreferencesModule
+
+    @RelaxedMockK
+    lateinit var connectivityModule: ConnectivityModule
 
     private lateinit var testSubject: SearchViewModel
 
@@ -37,8 +41,9 @@ class SearchViewModelTest {
         MockKAnnotations.init(this, relaxed = true)
         testSubject = SearchViewModel(
             context,
-            getCoinsUseCase,
-            sharedPref
+            repository,
+            sharedPref,
+            connectivityModule,
         )
     }
 

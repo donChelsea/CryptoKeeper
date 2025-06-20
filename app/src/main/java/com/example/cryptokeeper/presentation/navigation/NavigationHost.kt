@@ -22,9 +22,9 @@ import com.example.cryptokeeper.R
 import com.example.cryptokeeper.presentation.composables.NavTopBar
 import com.example.cryptokeeper.presentation.navigation.NavScreen.MovieDetailArgs.COIN_ID
 import com.example.cryptokeeper.presentation.navigation.NavScreen.MovieDetailArgs.COIN_NAME
-import com.example.cryptokeeper.presentation.screens.detail.ui.CoinDetailScreen
-import com.example.cryptokeeper.presentation.screens.home.ui.HomeScreen
-import com.example.cryptokeeper.presentation.screens.search.ui.SearchScreen
+import com.example.cryptokeeper.presentation.features.detail.ui.CoinDetailScreen
+import com.example.cryptokeeper.presentation.features.home.ui.HomeScreen
+import com.example.cryptokeeper.presentation.features.search.ui.SearchScreen
 
 @Composable
 fun NavigationHost() {

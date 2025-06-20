@@ -1,4 +1,4 @@
-package com.example.cryptokeeper.presentation.screens.detail
+package com.example.cryptokeeper.presentation.features.detail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope

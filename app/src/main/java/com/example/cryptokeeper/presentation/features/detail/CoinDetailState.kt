@@ -1,7 +1,6 @@
-package com.example.cryptokeeper.presentation.screens.detail
+package com.example.cryptokeeper.presentation.features.detail
 
 import androidx.compose.runtime.Immutable
-import com.example.cryptokeeper.domain.model.CoinDetail
 import com.example.cryptokeeper.presentation.models.CoinDetailUiModel
 
 @Immutable

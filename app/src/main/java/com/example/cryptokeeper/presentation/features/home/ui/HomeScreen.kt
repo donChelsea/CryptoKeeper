@@ -1,4 +1,4 @@
-package com.example.cryptokeeper.presentation.screens.home.ui
+package com.example.cryptokeeper.presentation.features.home.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,11 +17,11 @@ import com.example.cryptokeeper.presentation.composables.ShowLoadingListWithShim
 import com.example.cryptokeeper.presentation.composables.ShowOffline
 import com.example.cryptokeeper.presentation.models.CoinUiModel
 import com.example.cryptokeeper.presentation.navigation.NavScreen
-import com.example.cryptokeeper.presentation.screens.home.HomeAction
-import com.example.cryptokeeper.presentation.screens.home.HomeEvent
-import com.example.cryptokeeper.presentation.screens.home.HomeState
-import com.example.cryptokeeper.presentation.screens.home.HomeViewModel
-import com.example.cryptokeeper.presentation.screens.home.ScreenData
+import com.example.cryptokeeper.presentation.features.home.HomeAction
+import com.example.cryptokeeper.presentation.features.home.HomeEvent
+import com.example.cryptokeeper.presentation.features.home.HomeState
+import com.example.cryptokeeper.presentation.features.home.HomeViewModel
+import com.example.cryptokeeper.presentation.features.home.ScreenData
 
 @Composable
 fun HomeScreen(

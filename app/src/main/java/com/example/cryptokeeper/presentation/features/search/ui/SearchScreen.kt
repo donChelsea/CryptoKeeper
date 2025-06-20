@@ -1,6 +1,6 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
 
-package com.example.cryptokeeper.presentation.screens.search.ui
+package com.example.cryptokeeper.presentation.features.search.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -39,11 +39,11 @@ import com.example.cryptokeeper.presentation.composables.ShowError
 import com.example.cryptokeeper.presentation.composables.ShowLoading
 import com.example.cryptokeeper.presentation.composables.ShowOffline
 import com.example.cryptokeeper.presentation.navigation.NavScreen
-import com.example.cryptokeeper.presentation.screens.search.ScreenData
-import com.example.cryptokeeper.presentation.screens.search.SearchAction
-import com.example.cryptokeeper.presentation.screens.search.SearchEvent
-import com.example.cryptokeeper.presentation.screens.search.SearchState
-import com.example.cryptokeeper.presentation.screens.search.SearchViewModel
+import com.example.cryptokeeper.presentation.features.search.ScreenData
+import com.example.cryptokeeper.presentation.features.search.SearchAction
+import com.example.cryptokeeper.presentation.features.search.SearchEvent
+import com.example.cryptokeeper.presentation.features.search.SearchState
+import com.example.cryptokeeper.presentation.features.search.SearchViewModel
 
 @Composable
 fun SearchScreen(

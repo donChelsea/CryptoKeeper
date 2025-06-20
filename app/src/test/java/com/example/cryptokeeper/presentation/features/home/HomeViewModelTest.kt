@@ -1,15 +1,11 @@
-package com.example.cryptokeeper.presentation.screens.home
+package com.example.cryptokeeper.presentation.features.home
 
 import app.cash.turbine.test
-import com.example.cryptokeeper.domain.use_cases.GetCoinByIdUseCase
-import com.example.cryptokeeper.domain.use_cases.GetCoinsUseCase
-import com.example.cryptokeeper.presentation.screens.home.HomeAction
-import com.example.cryptokeeper.presentation.screens.home.HomeEvent
-import com.example.cryptokeeper.presentation.screens.home.HomeViewModel
+import com.example.cryptokeeper.domain.modules.ConnectivityModule
+import com.example.cryptokeeper.domain.repository.CoinRepository
 import com.example.cryptokeeper.utils.MainCoroutineRule
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.RelaxedMockK
-import io.mockk.mockk
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import org.junit.Before
@@ -24,14 +20,20 @@ class HomeViewModelTest {
     val mainCoroutineRule = MainCoroutineRule(testDispatcher)
 
     @RelaxedMockK
-    lateinit var getCoinsUseCase: GetCoinsUseCase
+    lateinit var repository: CoinRepository
+
+    @RelaxedMockK
+    lateinit var connectivityModule: ConnectivityModule
 
     private lateinit var testSubject: HomeViewModel
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this, relaxed = true)
-        testSubject = HomeViewModel(getCoinsUseCase)
+        testSubject = HomeViewModel(
+            repository,
+            connectivityModule
+        )
     }
 
     @Test
